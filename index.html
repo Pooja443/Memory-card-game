@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="alertOverlay">
+        <span id="alert-message"></span>
+    </div>
+    <div id="level-selection">
+        <h2 id="game-difficulty">Choose Level</h2>
+        <button data-level="easy" id="Level-Easy">Easy</button>
+        <button data-level="medium" id="Level-Medium">Medium</button>
+        <button data-level="hard" id="Level-Hard">Hard</button>
+    </div>
+
+    <div id="game-board" style="display: none;">
+    <div class="wrapper">
+        <div class="counts-wrapper">
+            <p id="moves">Moves:</p>
+            <p id="total-moves"></p>
+            <p id="counter"></p>
+        </div>
+        <div>
+        <div class="cards-container" id="show-cards"></div>
+        <div class="buttons-container">
+            <button id="shuffle">Shuffle</button>
+            <button id="restart">Restart</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const levelSelection = document.getElementById("level-selection");
+        const gameBoard = document.getElementById("game-board");
+
+        document.querySelectorAll("#level-selection button").forEach(btn => {
+            btn.addEventListener("click", () => {
+                //getting the level
+                const level = btn.dataset.level;
+
+                //displaying the cards
+                levelSelection.style.display = "none";
+                gameBoard.style.display = "block";
+                PickCardLevels(level);
+                playcards();
+            });
+        });
+
+        //restart the game
+        document.getElementById("restart").addEventListener("click", () => {
+            location.reload();
+        });
+  </script>
+</body>
+</html>
